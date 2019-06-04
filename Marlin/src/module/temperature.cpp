@@ -1684,7 +1684,7 @@ void Temperature::init() {
   #endif
 
   // Wait for temperature measurement to settle
-  delay(250);
+  delay(2000); //!!!!
 
   #if HOTENDS
 
@@ -2238,7 +2238,19 @@ void Temperature::readings_ready() {
         || (temp_bed.soft_pwm_amount > 0)
       #endif
     ;
-    if (BEDCMP(temp_bed.raw, maxtemp_raw_BED)) max_temp_error(-1);
+    if (BEDCMP(temp_bed.raw, maxtemp_raw_BED))
+    {
+       SERIAL_ECHO_START();
+      SERIAL_ECHOPGM("Thermal Thermal Runaway Running. Heater ID: ");
+      SERIAL_ECHO(temp_bed.raw);
+    SERIAL_ECHOPGM("  ");
+      SERIAL_ECHO(maxtemp_raw_BED);
+ 
+SERIAL_EOL();
+ 
+    max_temp_error(-1);
+    }
+ 
     if (bed_on && BEDCMP(mintemp_raw_BED, temp_bed.raw)) min_temp_error(-1);
   #endif
 

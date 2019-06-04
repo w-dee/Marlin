@@ -33,9 +33,9 @@
 
 #include "pins_MKS_SBASE.h"
 
-#undef E1_STEP_PIN
-#undef E1_DIR_PIN
-#undef E1_ENABLE_PIN
+//#undef E1_STEP_PIN //!!!
+//#undef E1_DIR_PIN //!!!
+//#undef E1_ENABLE_PIN //!!!
 
 //#undef BTN_EN1
 //#undef BTN_EN2

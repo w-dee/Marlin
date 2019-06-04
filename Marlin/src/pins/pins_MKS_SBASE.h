@@ -105,8 +105,8 @@
 #define HEATER_0_PIN       P2_07
 #define HEATER_1_PIN       P2_06
 #undef  FAN_PIN //!!!
-#define FAN1_PIN           P2_04 //!!!
-#define FAN2_PIN           P2_05 //!!!
+#define FAN_PIN            P2_04 //!!!
+#define FAN1_PIN           P2_05 //!!!
 
 //
 // Connector J7
