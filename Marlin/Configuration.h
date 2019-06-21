@@ -431,7 +431,7 @@
 #define HEATER_3_MAXTEMP 275
 #define HEATER_4_MAXTEMP 275
 #define HEATER_5_MAXTEMP 275
-#define BED_MAXTEMP      180
+#define BED_MAXTEMP      250
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -440,8 +440,8 @@
 
 // Comment the following line to disable PID and enable bang-bang.
 #define PIDTEMP
-#define BANG_MAX 80     // Limits current to nozzle while in bang-bang mode; 255=full current
-#define PID_MAX BANG_MAX // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
+#define BANG_MAX 128     // Limits current to nozzle while in bang-bang mode; 255=full current
+#define PID_MAX 64 // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 #if ENABLED(PIDTEMP)
   #define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
@@ -451,7 +451,7 @@
   //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
   //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
                                   // Set/get with gcode: M301 E[extruder number, 0-2]
-  #define PID_FUNCTIONAL_RANGE 40 // If the temperature difference between the target temperature and the actual temperature
+  #define PID_FUNCTIONAL_RANGE 50 // If the temperature difference between the target temperature and the actual temperature
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
@@ -462,10 +462,9 @@
   //#define DEFAULT_Kd 114
   // ANET A8 Standard Extruder at 210 Degree Celsius and 100% Fan
   //(measured after M106 S255 with M303 E0 S210 C8)
-  #define DEFAULT_Kp 4.0
-  #define DEFAULT_Ki 1.25
-  #define DEFAULT_Kd 86.0
-
+#define DEFAULT_Kp 3.14
+#define DEFAULT_Ki 0.12
+#define DEFAULT_Kd 20.02
   // MakerGear
   //#define DEFAULT_Kp 7.0
   //#define DEFAULT_Ki 0.1
@@ -647,15 +646,15 @@
  *          TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  DRV8825
-#define Y_DRIVER_TYPE  DRV8825
-#define Z_DRIVER_TYPE  DRV8825
+#define X_DRIVER_TYPE  LV8729
+#define Y_DRIVER_TYPE  LV8729
+#define Z_DRIVER_TYPE  LV8729
 //#define X2_DRIVER_TYPE DRV8825
 //#define Y2_DRIVER_TYPE DRV8825
 //#define Z2_DRIVER_TYPE DRV8825
 //#define Z3_DRIVER_TYPE DRV8825
-#define E0_DRIVER_TYPE DRV8825
-#define E1_DRIVER_TYPE DRV8825
+#define E0_DRIVER_TYPE LV8729
+#define E1_DRIVER_TYPE LV8729
 //#define E2_DRIVER_TYPE DRV8825
 //#define E3_DRIVER_TYPE DRV8825
 //#define E4_DRIVER_TYPE DRV8825
@@ -666,7 +665,7 @@
 //#define ENDSTOP_INTERRUPTS_FEATURE
 
 /**
- * Endstop Noise Threshold
+ * Endstop Noise Thre5 shold
  *
  * Enable if your probe or endstops falsely trigger due to noise.
  *
@@ -704,7 +703,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, (100.0*60/16)  }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100*8, 100*8, 400*8, (100.0*60/16)*8  }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -936,8 +935,8 @@
  *     O-- FRONT --+
  *   (0,0)
  */
-#define X_PROBE_OFFSET_FROM_EXTRUDER 38  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER 5     // Y offset: -front +behind [the nozzle]
+#define X_PROBE_OFFSET_FROM_EXTRUDER 18  // X offset: -left  +right  [of the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER -18    // Y offset: -front +behind [the nozzle]
 #define Z_PROBE_OFFSET_FROM_EXTRUDER -1.3     // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
