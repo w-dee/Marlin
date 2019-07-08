@@ -292,7 +292,7 @@
 
 /**
  * Example for trinamic drivers using the J8 connector on MKs Sbase.
- * 2130s need 1 pin for each driver. 2208s need 2 pins for serial control.
+ * 2130s need 1 pin for each driver. 2208/2209s need 2 pins for serial control.
  * This board does not have enough pins to use hardware serial.
  */
 
@@ -320,7 +320,7 @@
  #endif
 #endif
 
-#if MB(MKS_SBASE) && HAS_DRIVER(TMC2208)
+#if MB(MKS_SBASE) && (HAS_DRIVER(TMC2208) || HAS_DRIVER(TMC2209))
   // The shortage of pins becomes apparent.
   // Worst case you may have to give up the LCD
   // RX pins need to be interrupt capable
