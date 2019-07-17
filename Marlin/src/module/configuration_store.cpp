@@ -1,9 +1,9 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (C) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
- * Copyright (C) 2011 Camiel Gubbels / Erik van der Zalm
+ * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -126,7 +126,7 @@ typedef struct {  int16_t X, Y, Z;                                         } tmc
 typedef struct {     bool X, Y, Z, X2, Y2, Z2, Z3, E0, E1, E2, E3, E4, E5; } tmc_stealth_enabled_t;
 
 // Limit an index to an array size
-#define ALIM(I,ARR) MIN(I, COUNT(ARR) - 1)
+#define ALIM(I,ARR) _MIN(I, COUNT(ARR) - 1)
 
 /**
  * Current EEPROM Layout
@@ -3254,7 +3254,7 @@ void MarlinSettings::reset() {
        * TMC Sensorless homing thresholds
        */
       #if USE_SENSORLESS
-        CONFIG_ECHO_HEADING("TMC2130 StallGuard threshold:");
+        CONFIG_ECHO_HEADING("StallGuard threshold:");
         CONFIG_ECHO_START();
         #if X_SENSORLESS || Y_SENSORLESS || Z_SENSORLESS
           say_M914();
