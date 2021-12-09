@@ -55,7 +55,7 @@ void FilamentSensorBase::filament_present(const uint8_t extruder) {
   float RunoutResponseDelayed::runout_distance_mm = FILAMENT_RUNOUT_DISTANCE_MM;
   volatile float RunoutResponseDelayed::runout_mm_countdown[EXTRUDERS];
 #else
-  int8_t RunoutResponseDebounced::runout_count; // = 0
+  int16_t RunoutResponseDebounced::runout_count; // = 0
 #endif
 
 #endif // HAS_FILAMENT_SENSOR

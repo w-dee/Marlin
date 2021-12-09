@@ -53,11 +53,11 @@
 // Limit Switches - Not Interrupt Capable
 //
 #define X_MIN_PIN          P1_24   // 10k pullup to 3.3V, 1K series
-#define X_MAX_PIN          P1_25   // 10k pullup to 3.3V, 1K series
+//!!! this connector is used for E0 runout sensor #define X_MAX_PIN          P1_25   // 10k pullup to 3.3V, 1K series
 #define Y_MIN_PIN          P1_26   // 10k pullup to 3.3V, 1K series
-#define Y_MAX_PIN          P1_27   // 10k pullup to 3.3V, 1K series
+//!!! this connectos is used for E1 runout sensor #define Y_MAX_PIN          P1_27   // 10k pullup to 3.3V, 1K series
 #define Z_MIN_PIN          P1_28   // The original Mks Sbase DIO19 has a 10k pullup to 3.3V or 5V, 1K series, so when using a Zprobe we must use DIO41 (J8 P1.22)
-#define Z_MAX_PIN          P1_29   // 10k pullup to 3.3V, 1K series
+//!!! not used #define Z_MAX_PIN          P1_29   // 10k pullup to 3.3V, 1K series
 
 #ifndef Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN //!!! I want to use Z_MIN_PIN as probe pin, not the separate pin
 #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN //!!!
@@ -145,6 +145,9 @@
 // Misc. Functions
 //
 #define PS_ON_PIN          P1_23 //!!! changed from P0_25   // TH3 Connector
+
+#define FIL_RUNOUT_PIN P1_25 //!!! originally used for X_MAX
+#define FIL_RUNOUT2_PIN P1_27 //!!! originally used for Y_MAX
 
 //
 // Ethernet pins

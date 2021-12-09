@@ -297,7 +297,7 @@ bool load_filament(const float &slow_load_length/*=0*/, const float &fast_load_l
  *
  * - Fail if the a safe temperature was not reached
  * - Show "wait for unload" placard
- * - Retract, pause, then unload filament
+ * - Retract, pause, purge, pause, then unload filament
  * - Disable E stepper (on most machines)
  *
  * Returns 'true' if unload was completed, 'false' for abort
@@ -336,6 +336,11 @@ bool unload_filament(const float &unload_length, const bool show_lcd/*=false*/,
   // Quickly purge
   do_pause_e_move((FILAMENT_UNLOAD_RETRACT_LENGTH + FILAMENT_UNLOAD_PURGE_LENGTH) * mix_multiplier,
                   planner.settings.max_feedrate_mm_s[E_AXIS] * mix_multiplier);
+
+  // Wait for filament to get hot
+  #if FILAMENT_UNLOAD_DELAY_AFTER_PURGE > 0
+    safe_delay(FILAMENT_UNLOAD_DELAY_AFTER_PURGE);
+  #endif
 
   // Unload filament
   #if FILAMENT_CHANGE_UNLOAD_ACCEL > 0

@@ -340,11 +340,19 @@ class FilamentSensorBase {
 
   class RunoutResponseDebounced {
     private:
-      static constexpr int8_t runout_threshold = FILAMENT_RUNOUT_THRESHOLD;
-      static int8_t runout_count;
+      static constexpr int16_t runout_threshold = FILAMENT_RUNOUT_THRESHOLD;
+      static int16_t runout_count;
     public:
       static inline void reset()                                  { runout_count = runout_threshold; }
-      static inline void run()                                    { if (runout_count >= 0) runout_count--; }
+      static inline void run() {
+        // debounce check interval, minimum of 1ms.
+        static uint8_t last; // it will be enough to keep only lower 8bit of millis() to see if 1ms has elapsed
+        uint8_t now = (uint8_t)millis();
+        if (last != now) {
+          last = now;
+          if (runout_count >= 0) runout_count--;
+        }
+      }
       static inline bool has_run_out()                            { return runout_count < 0; }
       static inline void block_completed(const block_t* const b)  { UNUSED(b); }
       static inline void filament_present(const uint8_t extruder) { runout_count = runout_threshold; UNUSED(extruder); }
