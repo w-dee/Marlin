@@ -138,12 +138,12 @@ int freeMemory();
 // ADC API
 //
 
-#define ADC_MEDIAN_FILTER_SIZE (23) // Higher values increase step delay (phase shift),
+#define ADC_MEDIAN_FILTER_SIZE (0) // Higher values increase step delay (phase shift),
                                     // (ADC_MEDIAN_FILTER_SIZE + 1) / 2 sample step delay (12 samples @ 500Hz: 24ms phase shift)
                                     // Memory usage per ADC channel (bytes): (6 * ADC_MEDIAN_FILTER_SIZE) + 16
                                     // 8 * ((6 * 23) + 16 ) = 1232 Bytes for 8 channels
 
-#define ADC_LOWPASS_K_VALUE    (2)  // Higher values increase rise time
+#define ADC_LOWPASS_K_VALUE    (8)  // Higher values increase rise time
                                     // Rise time sample delays for 100% signal convergence on full range step
                                     // (1 : 13, 2 : 32, 3 : 67, 4 : 139, 5 : 281, 6 : 565, 7 : 1135, 8 : 2273)
                                     // K = 6, 565 samples, 500Hz sample rate, 1.13s convergence on full range step
@@ -151,7 +151,7 @@ int freeMemory();
 
 #define HAL_ADC_VREF            3.3 // ADC voltage reference
 
-#define HAL_ADC_RESOLUTION     12   // 15 bit maximum, raw temperature is stored as int16_t
+#define HAL_ADC_RESOLUTION     15   // 15 bit maximum, raw temperature is stored as int16_t
 #define HAL_ADC_FILTERED            // Disable oversampling done in Marlin as ADC values already filtered in HAL
 
 using FilteredADC = LPC176x::ADC<ADC_LOWPASS_K_VALUE, ADC_MEDIAN_FILTER_SIZE>;

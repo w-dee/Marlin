@@ -42,23 +42,27 @@
 //
 // Servos
 //
-#define SERVO0_PIN                         P1_23  // J8-3 (low jitter)
-#define SERVO1_PIN                         P2_12  // J8-4
-#define SERVO2_PIN                         P2_11  // J8-5
-#define SERVO3_PIN                         P4_28  // J8-6
+//#define SERVO0_PIN                         P1_23  // J8-3 (low jitter)
+//#define SERVO1_PIN                         P2_12  // J8-4
+//#define SERVO2_PIN                         P2_11  // J8-5
+//#define SERVO3_PIN                         P4_28  // J8-6
 
 //
 // Limit Switches - Not Interrupt Capable
 //
 #define X_MIN_PIN                          P1_24  // 10k pullup to 3.3V, 1K series
-#define X_MAX_PIN                          P1_25  // 10k pullup to 3.3V, 1K series
+//#define X_MAX_PIN                          P1_25  // 10k pullup to 3.3V, 1K series
 #define Y_MIN_PIN                          P1_26  // 10k pullup to 3.3V, 1K series
-#define Y_MAX_PIN                          P1_27  // 10k pullup to 3.3V, 1K series
+//#define Y_MAX_PIN                          P1_27  // 10k pullup to 3.3V, 1K series
 #define Z_MIN_PIN                          P1_28  // The original Mks Sbase DIO19 has a 10k pullup to 3.3V or 5V, 1K series, so when using a Zprobe we must use DIO41 (J8 P1.22)
-#define Z_MAX_PIN                          P1_29  // 10k pullup to 3.3V, 1K series
+//#define Z_MAX_PIN                          P1_29  // 10k pullup to 3.3V, 1K series
+
+#ifndef Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN //!!! I want to use Z_MIN_PIN as probe pin, not the separate pin
+#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN //!!!
+#endif //!!!
 
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN                  P4_28  // Connector J8
+//  #define Z_MIN_PROBE_PIN                  P4_28  // Connector J8
 #endif
 
 //
@@ -96,11 +100,12 @@
 //
 // Heaters / Fans
 //
-#define HEATER_BED_PIN                     P2_05
+#define HEATER_BED_PIN                     P1_22
 #define HEATER_0_PIN                       P2_07
 #define HEATER_1_PIN                       P2_06
 #ifndef FAN_PIN
   #define FAN_PIN                          P2_04
+  #define FAN1_PIN                         P2_05
 #endif
 
 //
@@ -121,8 +126,8 @@
 //
 
 // GND
-#define PIN_P1_22                          P1_22
-#define PIN_P1_23                          P1_23  // PWM Capable
+#define PIN_P1_22                          P1_22 //!!! for heater_bed_pin
+#define PIN_P1_23                          P1_23 //!!! for PS ON pin // PWM Capable // PWM Capable
 #define PIN_P2_12                          P2_12  // Interrupt Capable
 #define PIN_P2_11                          P2_11  // Interrupt Capable
 
@@ -143,6 +148,8 @@
   #define KILL_PIN                         P1_29  // Z+
   #define KILL_PIN_STATE                    HIGH
 #endif
+
+#define PS_ON_PIN P1_23
 
 //
 // Ethernet pins
@@ -389,3 +396,6 @@
  *   P0_29 - Port -1
  *   P0_30 - USB
  */
+
+#define FIL_RUNOUT_PIN P1_25 //!!! originally used for X_MAX
+#define FIL_RUNOUT2_PIN P1_27 //!!! originally used for Y_MAX
