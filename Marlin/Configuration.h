@@ -1531,12 +1531,14 @@ M503
 // @section machine
 
 // The size of the printable area
+//#define X_BED_SIZE 215
+//#define Y_BED_SIZE 210
 #define X_BED_SIZE 215
-#define Y_BED_SIZE 210
+#define Y_BED_SIZE 215
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
-#define X_MIN_POS -33
-#define Y_MIN_POS -3
+#define X_MIN_POS -31
+#define Y_MIN_POS -7
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
@@ -1850,7 +1852,7 @@ M503
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-#define LCD_BED_TRAMMING
+//#define LCD_BED_TRAMMING
 
 #if ENABLED(LCD_BED_TRAMMING)
   #define BED_TRAMMING_INSET_LFRB { 50, 50, 50, 50 }  // (mm) Left, Front, Right, Back insets
@@ -2319,7 +2321,7 @@ M503
 //
 //  Set this option if CLOCKWISE causes values to DECREASE
 //
-//#define REVERSE_ENCODER_DIRECTION
+#define REVERSE_ENCODER_DIRECTION
 
 //
 // This option reverses the encoder direction for navigating LCD menus.
