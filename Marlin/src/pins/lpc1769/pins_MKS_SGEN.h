@@ -299,6 +299,18 @@
 
 #endif // HAS_WIRED_LCD
 
+
+// Note, MKS SBASE/SGEN has no connection of DOGLCD_CS and DOGLCD_A0.
+// Use modification described at https://github.com/makerbase-mks/MKS-SBASE/issues/101
+#ifdef MKS_MINI_12864
+  #define DOGLCD_CS P0_16
+  #define DOGLCD_A0 P0_15
+  #define DOGLCD_SCK P0_07
+  #define DOGLCD_MOSI P0_09
+  #define FORCE_SOFT_SPI // use software SPI; possible reason is the same as the FYSETC_MINI_12864.
+  #define SOFTWARE_SPI
+#endif
+
 /**
  * Example for trinamic drivers using the J8 connector on MKs Sbase.
  * 2130s need 1 pin for each driver. 2208/2209s need 2 pins for serial control.
