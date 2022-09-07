@@ -242,7 +242,7 @@
 
 #elif HAS_WIRED_LCD
 
-  #define BEEPER_PIN                       P1_31  // EXP1.1
+//  #define BEEPER_PIN                       P1_31  // EXP1.1 // unused; used for DOG LCD A0 PIN
   #define BTN_ENC                          P1_30  // EXP1.2
   #define BTN_EN1                          P3_26  // EXP2.5
   #define BTN_EN2                          P3_25  // EXP2.3
@@ -303,12 +303,14 @@
 // Note, MKS SBASE/SGEN has no connection of DOGLCD_CS and DOGLCD_A0.
 // Use modification described at https://github.com/makerbase-mks/MKS-SBASE/issues/101
 #ifdef MKS_MINI_12864
-  #define DOGLCD_CS P0_16
-  #define DOGLCD_A0 P0_15
-  #define DOGLCD_SCK P0_07
-  #define DOGLCD_MOSI P0_09
-  #define FORCE_SOFT_SPI // use software SPI; possible reason is the same as the FYSETC_MINI_12864.
-  #define SOFTWARE_SPI
+  #define DOGLCD_CS P0_15
+  #define DOGLCD_A0 P1_31
+  #define DOGLCD_SCK P0_18
+  #define DOGLCD_MOSI P0_16
+  #define DOGLCD_RS P0_28 // use LCD reset pin
+  #define FORCE_SOFT_SPI
+  #define LCD_SPI_SPEED  SPI_EIGHTH_SPEED
+  #define U8G_PARAM DOGLCD_SCK, DOGLCD_MOSI, DOGLCD_CS, DOGLCD_A0, DOGLCD_RS
 #endif
 
 /**
