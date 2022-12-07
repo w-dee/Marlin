@@ -1061,7 +1061,7 @@ M503
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 8, 50 }
+#define DEFAULT_MAX_FEEDRATE          { 600, 600, 10, 50 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1533,7 +1533,7 @@ M503
 // The size of the printable area
 //#define X_BED_SIZE 215
 //#define Y_BED_SIZE 210
-#define X_BED_SIZE 240
+#define X_BED_SIZE 265
 #define Y_BED_SIZE 215
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
