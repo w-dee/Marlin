@@ -1749,7 +1749,7 @@ Recv: MPC_AMBIENT_XFER_COEFF_FAN255 0.0165
 #define Y_BED_SIZE 215
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
-#define X_MIN_POS -4
+#define X_MIN_POS -2
 #define Y_MIN_POS -7
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
